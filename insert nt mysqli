@@ -1,0 +1,45 @@
+<?php
+
+// Configurações de conexão
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'TrabalhoFinal';
+
+$conn = new mysqli ($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die ("erro ao se conectar ao banco de dados.".$conn->connect_error);
+
+}
+
+function armazenamento_etanol ($conn, $capacidade_tanques, $condicoes_armazenamento, $estoque_atual) {
+    $sqlinserir = "INSERT INTO armazenamento_etanol (capacidade_tanques, condicoes_armazenamento, estoque_atual) VALUES ('$capacidade_tanques', '$condicoes_armazenamento', '$estoque_atual')";
+    
+    if ($conn->query($sqlinserir) === TRUE) {
+        echo "Dados inseridos com sucesso";
+
+    } else {
+        echo "Erro ao inserir dados." . $conn->error;
+    }
+
+}
+
+function manutencao_equipamentos ($conn, $rotinas_manutencao, $historico_intervencoes, $relatorios_manutencao) {
+    $sqlinserir = "INSERT INTO manutencao_equipamentos (rotinas_manutencao, historico_intervencoes, relatorios_manutencao) VALUES ('$capacidade_tanques', '$condicoes_armazenamento', '$estoque_atual')";
+    
+    if ($conn->query($sqlinserir) === TRUE) {
+        echo "Dados inseridos com sucesso";
+
+    } else {
+        echo "Erro ao inserir dados." . $conn->error;
+    }
+
+}
+
+armazenamento_etanol ($conn, 5000, "temperatura adequada", 4000 );
+
+manutencao_equipamentos ($conn, "limpar e varrer", "duas por semana", "manutendido" );
+
+
+?>
